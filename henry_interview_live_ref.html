@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Henry Fan — FHDA Interview Reference</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f5f4f0;
+  --surface: #ffffff;
+  --surface2: #f0ede6;
+  --border: #ddd9d0;
+  --text: #1a1814;
+  --muted: #6b6560;
+  --accent: #1d4ed8;
+  --accent-bg: #eff6ff;
+  --green: #166534;
+  --green-bg: #f0fdf4;
+  --amber: #92400e;
+  --amber-bg: #fffbeb;
+  --red: #991b1b;
+  --red-bg: #fef2f2;
+  --purple: #5b21b6;
+  --purple-bg: #f5f3ff;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'IBM Plex Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.5;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* HEADER */
+header {
+  background: var(--text);
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+.header-left {
+  display: flex; align-items: center; gap: 16px;
+}
+.header-title {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+.interview-badge {
+  background: #dc2626;
+  color: white;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 3px;
+  letter-spacing: 0.1em;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+.search-wrap {
+  position: relative;
+}
+#search {
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 4px;
+  padding: 6px 12px 6px 32px;
+  color: white;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  width: 240px;
+  outline: none;
+}
+#search::placeholder { color: rgba(255,255,255,0.4); }
+#search:focus { border-color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.18); }
+.search-icon {
+  position: absolute;
+  left: 10px; top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255,255,255,0.4);
+  font-size: 12px;
+}
+
+/* TABS */
+.tabs {
+  background: var(--surface);
+  border-bottom: 2px solid var(--border);
+  display: flex;
+  padding: 0 16px;
+  gap: 2px;
+  flex-shrink: 0;
+  overflow-x: auto;
+}
+.tab {
+  padding: 10px 16px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  white-space: nowrap;
+  transition: color 0.15s, border-color 0.15s;
+  user-select: none;
+}
+.tab:hover { color: var(--text); }
+.tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* MAIN LAYOUT */
+.main {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 220px;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+  flex-shrink: 0;
+  padding: 12px 0;
+}
+.sidebar-section {
+  padding: 4px 12px 2px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-top: 10px;
+}
+.sidebar-item {
+  padding: 7px 16px;
+  cursor: pointer;
+  font-size: 12px;
+  color: var(--muted);
+  border-left: 3px solid transparent;
+  transition: all 0.1s;
+  line-height: 1.3;
+}
+.sidebar-item:hover { background: var(--surface2); color: var(--text); }
+.sidebar-item.active { color: var(--accent); border-left-color: var(--accent); background: var(--accent-bg); font-weight: 500; }
+
+/* CONTENT */
+.content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 28px;
+}
+
+/* PANEL */
+.panel { display: none; }
+.panel.active { display: block; }
+
+/* CARDS */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 18px 20px;
+  margin-bottom: 14px;
+}
+.card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.q-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  background: var(--accent);
+  color: white;
+  padding: 3px 7px;
+  border-radius: 3px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.q-num.green { background: var(--green); }
+.q-num.amber { background: #d97706; }
+.q-num.red { background: #dc2626; }
+.q-num.purple { background: #7c3aed; }
+
+.card h3 {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.3;
+  flex: 1;
+}
+.card h3 .q-text {
+  font-size: 12px;
+  color: var(--muted);
+  font-style: italic;
+  display: block;
+  font-weight: 400;
+  margin-top: 3px;
+}
+
+.answer-body { font-size: 13px; line-height: 1.7; color: var(--text); }
+.answer-body p { margin-bottom: 10px; }
+.answer-body p:last-child { margin-bottom: 0; }
+
+/* HIGHLIGHT BOXES */
+.hl {
+  border-radius: 4px;
+  padding: 10px 14px;
+  margin: 10px 0;
+  font-size: 12.5px;
+  line-height: 1.6;
+}
+.hl-blue { background: var(--accent-bg); border-left: 3px solid var(--accent); color: #1e3a8a; }
+.hl-green { background: var(--green-bg); border-left: 3px solid #16a34a; color: var(--green); }
+.hl-amber { background: var(--amber-bg); border-left: 3px solid #d97706; color: var(--amber); }
+.hl-red { background: var(--red-bg); border-left: 3px solid #dc2626; color: var(--red); }
+.hl-purple { background: var(--purple-bg); border-left: 3px solid #7c3aed; color: var(--purple); }
+
+.hl strong { font-weight: 600; }
+
+/* STEP LIST */
+.steps { list-style: none; counter-reset: steps; }
+.steps li {
+  counter-increment: steps;
+  padding: 6px 0 6px 28px;
+  position: relative;
+  font-size: 13px;
+  border-bottom: 1px solid var(--border);
+}
+.steps li:last-child { border-bottom: none; }
+.steps li::before {
+  content: counter(steps);
+  position: absolute;
+  left: 0;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  background: var(--accent);
+  color: white;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  top: 8px;
+}
+
+/* TAGS */
+.tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+.tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  padding: 2px 7px;
+  border-radius: 3px;
+  background: var(--surface2);
+  color: var(--muted);
+  border: 1px solid var(--border);
+}
+.tag.accent { background: var(--accent-bg); color: var(--accent); border-color: #bfdbfe; }
+.tag.green { background: var(--green-bg); color: var(--green); border-color: #bbf7d0; }
+
+/* CHEAT TABLE */
+table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+th {
+  background: var(--surface2);
+  padding: 8px 12px;
+  text-align: left;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  font-weight: 600;
+  border-bottom: 2px solid var(--border);
+}
+td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  line-height: 1.5;
+}
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: var(--surface2); }
+td:first-child { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; color: var(--accent); white-space: nowrap; }
+
+/* SECTION TITLE */
+.section-title {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 16px;
+  margin-top: 24px;
+}
+.section-title:first-child { margin-top: 0; }
+
+/* TWO-COL */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+/* ANCHOR */
+.anchor { scroll-margin-top: 20px; }
+
+/* SEARCH HIGHLIGHT */
+.search-match { background: #fef08a; border-radius: 2px; }
+
+/* SCROLLBAR */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+/* NO RESULTS */
+.no-results {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--muted);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+}
+
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+  .two-col { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <span class="header-title">HENRY FAN / FHDA ETS INTERVIEW</span>
+    <span class="interview-badge">● LIVE REF</span>
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(255,255,255,0.5)">Tue Feb 24 · 5:00 PM · Zoom · Kevin Metcalf, AVC</span>
+  </div>
+  <div class="search-wrap">
+    <span class="search-icon">⌕</span>
+    <input type="text" id="search" placeholder="Search anything..." oninput="doSearch(this.value)">
+  </div>
+</header>
+
+<div class="tabs">
+  <div class="tab active" onclick="showTab('q10')">10 Questions</div>
+  <div class="tab" onclick="showTab('tech')">Technical Q&A</div>
+  <div class="tab" onclick="showTab('cheat')">Triage Cheat Sheet</div>
+  <div class="tab" onclick="showTab('stories')">3 Stories</div>
+  <div class="tab" onclick="showTab('vocab')">Key Vocab</div>
+  <div class="tab" onclick="showTab('closer')">Closers</div>
+</div>
+
+<div class="main">
+  <div class="sidebar" id="sidebar">
+    <!-- populated by JS -->
+  </div>
+  <div class="content" id="content">
+
+    <!-- ======================== TAB: 10 QUESTIONS ======================== -->
+    <div class="panel active" id="panel-q10">
+
+      <div class="section-title">Behavioral & Situational Questions</div>
+
+      <div class="card anchor" id="q1">
+        <div class="card-header">
+          <span class="q-num">Q1</span>
+          <h3>Tell us about yourself and why you're interested in this position.
+            <span class="q-text">"Walk us through your background..."</span>
+          </h3>
+        </div>
+        <div class="answer-body">
+          <p>My background is a blend of enterprise IT and higher education systems work — and this role sits right at the intersection of both. I started at Foothill, earned my A.S. in CS there, then moved through IT Operations at Faraday Future, supporting engineering staff on endpoints and systems. Later I was DBA at Rice University's OpenStax project, supporting production platforms used by students nationwide. Most recently I've been back in the district — Financial Aid Coordinator at Foothill, then Systems Supervisor at Skyline, where I was the primary technical escalation point for Banner and all web-based platforms Financial Aid ran on.</p>
+          <div class="hl hl-blue"><strong>The through-line:</strong> I've been the user, the support person, and the systems supervisor. I've sat at the desk that couldn't open a Banner form the morning of an audit. So when I'm on the other end of a ticket, I'm not just resolving a technical issue — I'm resolving a moment of stress for a real person with a real deadline.</div>
+          <p>ETS is where the District's technology actually touches students and staff every single day. The help desk isn't just support infrastructure — it's the front door to whether any of this works for the people it's meant to serve.</p>
+          <div class="tags"><span class="tag accent">Full-circle story</span><span class="tag accent">Banner user & support</span><span class="tag accent">FHDA insider</span></div>
+        </div>
+      </div>
+
+      <div class="card anchor" id="q2">
+        <div class="card-header">
+          <span class="q-num">Q2</span>
+          <h3>Describe your experience in a fast-paced environment with multiple concurrent priorities.
+            <span class="q-text">"How do you manage when everything is urgent at once?"</span>
+          </h3>
+        </div>
+        <div class="answer-body">
+          <div class="hl hl-green"><strong>Framework:</strong> Impact × Urgency triage — not everything urgent is high-impact, and not everything high-impact is urgent.</div>
+          <p>Financial Aid at Skyline operated on hard deadlines — disbursement dates, audit cycles, end-of-term. When a system goes down there's no "we'll get to it later." My approach:</p>
+          <ul class="steps">
+            <li><strong>Classroom outage</strong> → high impact + high urgency → personal attention immediately</li>
+            <li><strong>Dean locked out</strong> → high urgency but individually scoped → resolve remotely in parallel</li>
+            <li><strong>Password reset</strong> → low complexity → delegate to student worker with clear instructions, check back in 10 min</li>
+          </ul>
+          <p style="margin-top:10px">Key habit: I watch whether tickets are <em>clustering</em>. A cluster usually means a systemic issue generating individual tickets — fixing the root is worth more than closing five tickets in a row.</p>
+          <div class="hl hl-amber"><strong>Banner nightly job story:</strong> When it failed, I caught it before staff arrived. Proactive notification meant they came in with context, not chaos.</div>
+        </div>
+      </div>
+
+      <div class="card anchor" id="q3">
+        <div class="card-header">
+          <span class="q-num green">Q3</span>
+          <h3>Give an example of a difficult technical problem you diagnosed and resolved.
+            <span class="q-text">"Tell me about a time you had to dig into a complex issue..."</span>
+          </h3>
+        </div>
+        <div class="answer-body">
+          <div class="hl hl-green"><strong>The Banner Security Class Story — Skyline</strong></div>
+          <p>Staff member reported Banner showing incorrect award data. "Banner is wrong" can mean 5 things: sync failure, permissions, user error, bad upstream entry, or an actual bug.</p>
+          <ul class="steps">
+            <li>Reproduced under my credentials → confirmed real and consistent</li>
+            <li>Tested under staff member's credentials → it was role-specific</li>
+            <li>Checked Banner security class assignments for that role</li>
+            <li>Found: a routine Banner upgrade had reset a permission setting affecting that form for that user group</li>
+            <li>Escalated to Banner admin with: specific security class ID + affected form</li>
+            <li>Sent proactive notification to everyone in that role — nobody else filed a ticket</li>
+          </ul>
+          <div class="hl hl-blue"><strong>The lesson:</strong> Taking 20 min to isolate the layer first turned a potential wide-impact incident into a clean, documented resolution. The admin got a useful report, not a vague complaint.</div>
+        </div>
+      </div>
+
+      <div class="card anchor" id="q4">
+        <div class="card-header">
+          <span class="q-num">Q4</span>
+          <h3>How do you handle a frustrated or upset user?
+            <span class="q-text">"Describe a time you dealt with a difficult customer..."</span>
+          </h3>
+        </div>
+        <div class="answer-body">
+          <div class="hl hl-amber"><strong>Principle:</strong> Calm is contagious. The first 15 seconds matter more than the first fix.</div>
+          <p>Frustration is almost never really about the technology. A faculty member with a broken projector isn't upset about the HDMI cable — they're upset because their students are watching them fail in front of 30 people. Respond to the human layer first, then the technical layer.</p>
+          <p><strong>Two simultaneous tracks:</strong></p>
+          <ul class="steps">
+            <li><strong>Human track:</strong> Acknowledge the situation, give realistic timeline, keep them informed as you work</li>
+            <li><strong>Technical track:</strong> Work the problem methodically in parallel</li>
+          </ul>
+          <div class="hl hl-blue"><strong>The narration habit:</strong> "I'm clearing your browser cache because your session token got stuck — if this happens again, Incognito mode will usually bypass it immediately." That sentence explains what I'm doing, gives them a tool for next time, and makes them a participant, not a bystander. Fewer repeat tickets.</div>
+        </div>
+      </div>
+
+      <div class="card anchor" id="q5">
+        <div class="card-header">
+          <span class="q-num">Q5</span>
+          <h3>Describe your experience with Active Directory and endpoint management.
+            <span class="q-text">"What AD tasks are you comfortable with day-to-day?"</span>
+          </h3>
+        </div>
+        <div class="answer-body">
+          <p><strong>At Skyline (FERPA-compliant environment):</strong> Full user lifecycle — creating accounts with correct OU placement, managing group memberships, home drive mappings, and offboarding as disable-first (never immediate deletion).</p>
+          <div class="hl hl-green"><strong>Key distinctions I know:</strong> Password reset vs. account unlock (different audit implications). Security groups vs. distribution groups (critical when someone asks to be "added to the email list" that's actually a security group with file share permissions).</div>
+          <p><strong>At Faraday Future:</strong> Hands-on workstation support across mixed Windows/Linux environment — driver troubleshooting, OS config, network interface setup, MDM and VPN for remote workforce.</p>
+          <div class="hl hl-amber"><strong>Honest gap:</strong> Full imaging deployments with SCCM or Jamf in production — I understand the workflow conceptually but would want to shadow your process before owning it solo. Everything else on the endpoint side is daily work for me.</div>
+        </div>
+      </div>
+
+      <div class="card anchor" id="q6">
+        <div class="card-header">
+          <span class="q-num purple">Q6</span>
+          <h3>How do you approach training a user or student worker?
+            <span class="q-text">"How would you mentor a less experienced technician?"</span>
+          </h3>
+        </div>
+        <div class="answer-body">
+          <div class="hl hl-purple"><strong>Core concept:</strong> The Curse of Knowledge — technically skilled people forget what it was like to not understand. Fix that first.</div>
+          <p><strong>Three principles from my learning science background:</strong></p>
+          <ul class="steps">
+            <li><strong>Narrate while you show.</strong> "I'm right-clicking here because..." builds mental models, not just muscle memory. Muscle memory breaks when the interface changes.</li>
+            <li><strong>Don't solve for the user.</strong> Ask "what have you ruled out so far?" before answering. That teaches diagnostic thinking, which is the real skill.</li>
+            <li><strong>Match depth to the person.</strong> A faculty member doesn't need to understand session tokens. A student worker troubleshooting SSO issues does. 30 seconds of conversation upfront saves 10 minutes of confusion.</li>
+          </ul>
+          <div class="hl hl-blue"><strong>Documentation habit:</strong> If I'm showing someone the same process more than once, I write it up as a KB article. Forces clarity. Reduces tribal knowledge risk.</div>
+        </div>
+      </div>
+
+      <div class="card anchor" id="q7">
+        <div class="card-header">
+          <span class="q-num green">Q7</span>
+          <h3>Tell us about your documentation experience.
+            <span class="q-text">"How do you approach writing user guides or runbooks?"</span>
+          </h3>
+        </div>
+        <div class="answer-body">
+          <p><strong>Rice University (OpenStax):</strong> Operational runbooks for production databases — written for the person on call at 2 AM who's stressed, unfamiliar with the system's history, and needs to execute correctly under pressure. Format: unambiguous step sequences, explicit decision points ("if X do Y, if Z escalate to [person]"), no assumed knowledge.</p>
+          <p><strong>Skyline:</strong> Plain-language translations of Oracle error codes for Financial Aid staff. "System error REQD-1044" doesn't help a counselor. "Your account doesn't have permission to view this record — submit a ticket with this error code and the student's ID" does.</p>
+          <div class="hl hl-green"><strong>My standard:</strong> Write for the person at their most stressed, not for the person who already knows the answer. Version everything — update the doc the day a process changes, archive the old version.</div>
+          <div class="hl hl-blue"><strong>Early priority in this role:</strong> Audit the KB for gaps — the things people know but haven't written down. Tribal knowledge is a team risk. If it only lives in one person's head, it disappears when they're on vacation.</div>
+        </div>
+      </div>
+
+      <div class="card anchor" id="q8">
+        <div class="card-header">
+          <span class="q-num">Q8</span>
+          <h3>How do you stay current with tech changes? How would you learn FHDA-specific systems?
+            <span class="q-text">"What's your approach to continuous learning in IT?"</span>
+          </h3>
+        </div>
+        <div class="answer-body">
+          <p><strong>Staying current:</strong> Follow CISA alerts and vendor security bulletins. Maintain a personal lab environment to test before deploying. Knowing about a critical patch before it becomes an incident is worth more than any other reading.</p>
+          <p><strong>Learning FHDA specifically:</strong></p>
+          <ul class="steps">
+            <li>Week 1-2: Spend time with the KB and existing documentation — understand the shape of what exists, where the gaps are</li>
+            <li>Ride along on a range of ticket types including "basic" ones — that's where institutional knowledge lives (workarounds, edge cases)</li>
+            <li>Understand the Banner environment at the infrastructure layer — I know what users experience, I want to understand what's underneath</li>
+            <li>Learn the team's escalation norms, communication preferences, and rhythms <em>before</em> assuming anything</li>
+          </ul>
+          <div class="hl hl-amber"><strong>The wrong move:</strong> Show up confident and immediately do things the way you did them somewhere else. I'd rather ask obvious questions in week one than make assumptions I'll regret in week three.</div>
+        </div>
+      </div>
+
+      <div class="card anchor" id="q9">
+        <div class="card-header">
+          <span class="q-num green">Q9</span>
+          <h3>Describe a time you identified a systemic issue beyond just solving the immediate problem.
+            <span class="q-text">"Tell me about a time you found a root cause others had missed..."</span>
+          </h3>
+        </div>
+        <div class="answer-body">
+          <div class="hl hl-green"><strong>The Thursday Afternoon Banner Pattern — Skyline</strong></div>
+          <p>Over 3 weeks, Financial Aid counselors were getting sporadic Banner form errors — always on Thursdays, always in the afternoon. Each was resolved individually (clear session, reopen ticket, close). The symptom looked like a session issue, so nobody connected them.</p>
+          <ul class="steps">
+            <li>Pulled ticket history, sorted by error type and timestamp</li>
+            <li>Every single instance: 4-hour window, Thursday, ~1 PM start</li>
+            <li>That timing = a scheduled process creating database contention</li>
+            <li>Escalated to Banner admin with: "recurring Thursday afternoon session failure correlating with a scheduled job — here are the timestamps and affected accounts"</li>
+            <li>Banner admin diagnosed in ~1 hour: a report job misconfigured to run during business hours was degrading active sessions under load</li>
+            <li>Rescheduled to 2 AM — Thursday tickets stopped entirely</li>
+          </ul>
+          <div class="hl hl-blue"><strong>The habit:</strong> A single ticket is a problem to solve. A cluster of similar tickets is a signal. My job isn't just to close the ticket in front of me — it's to notice when something is trying to tell me something bigger.</div>
+        </div>
+      </div>
+
+      <div class="card anchor" id="q10">
+        <div class="card-header">
+          <span class="q-num amber">Q10</span>
+          <h3>What questions do you have for us?
+            <span class="q-text">Always have 3 ready. These signal how you think.</span>
+          </h3>
+        </div>
+        <div class="answer-body">
+          <div class="hl hl-amber"><strong>Ask these in order. All three are genuine, not filler.</strong></div>
+          <ul class="steps">
+            <li><strong>Escalation norms:</strong> "The JD draws a clear distinction between this role and the Senior CSS. How does that handoff play out day-to-day — is it primarily about complexity, scope, or something else? I want to calibrate my own judgment correctly."</li>
+            <li><strong>Cross-team coordination:</strong> "How does ETS coordinate with Instructional Technology, the Banner team, and networking when something like an SSO failure or Banner nightly job issue comes up? Knowing the right person for each situation matters a lot to how I'd triage."</li>
+            <li><strong>Automation culture:</strong> "The JD mentions scripting and workflow automation. Are there specific recurring manual processes the team has identified as automation candidates, or is that more of an individual initiative as capacity allows?"</li>
+          </ul>
+        </div>
+      </div>
+
+    </div><!-- end panel-q10 -->
+
+    <!-- ======================== TAB: TECHNICAL Q&A ======================== -->
+    <div class="panel" id="panel-tech">
+
+      <div class="section-title">Original 5 Technical Questions</div>
+
+      <div class="card anchor" id="t1">
+        <div class="card-header">
+          <span class="q-num">T1</span>
+          <h3>Faculty can't access the Foothill website but can get to Google.
+            <span class="q-text">DNS vs. server-side failure</span>
+          </h3>
+        </div>
+        <div class="answer-body">
+          <ul class="steps">
+            <li>Ping the Foothill IP directly — if it responds, it's DNS; if not, the server itself is down</li>
+            <li>Run <code style="background:#f1f5f9;padding:1px 4px;border-radius:3px">tracert foothill.edu</code> — see where the connection drops (internal district vs. public ISP)</li>
+            <li>Check browser console for 404/503 — 503 = server actively rejecting; 404 = DNS resolves but path is wrong</li>
+            <li>If DNS: flush client cache (<code style="background:#f1f5f9;padding:1px 4px;border-radius:3px">ipconfig /flushdns</code>), test with 8.8.8.8 as DNS server</li>
+          </ul>
+          <div class="hl hl-blue"><strong>Key phrase:</strong> "Google works means your internet connection is fine. Foothill not working means the problem is either DNS resolution or a server issue — I narrow it down with ping and tracert before touching anything else."</div>
+        </div>
+      </div>
+
+      <div class="card anchor" id="t2">
+        <div class="card-header">
+          <span class="q-num">T2</span>
+          <h3>Projector shows "No Signal" even though laptop is plugged in.
+            <span class="q-text">Smart classroom multimedia triage</span>
+          </h3>
+        </div>
+        <div class="answer-body">
+          <ul class="steps">
+            <li><strong>Physical chain:</strong> HDMI/VGA fully seated both ends + wall plate connection</li>
+            <li><strong>Switcher input:</strong> Extron/Crestron panel — confirm correct input source selected</li>
+            <li><strong>EDID handshake:</strong> Win+P on laptop → cycle through Duplicate/Extend to force GPU to re-detect the display</li>
+            <li>If still nothing: try a different cable; test laptop on a different display; check projector power/lamp status</li>
+            <li>Reboot the Crestron/Extron control processor if available</li>
+          </ul>
+          <div class="hl hl-amber"><strong>While working:</strong> Tell the instructor: "This usually takes 2 minutes. If you want to start class, I can stay quiet in the back." Never make 30 students wait in silence.</div>
+        </div>
+      </div>
+
+      <div class="card anchor" id="t3">
+        <div class="card-header">
+          <span class="q-num">T3</span>
+          <h3>Computer is "unbearably slow" every morning at 9:00 AM.
+            <span class="q-text">Scheduled process / performance bottleneck</span>
+          </h3>
+        </div>
+        <div class="answer-body">
+          <p>Specific time = scheduled process. Don't just reboot — find the service.</p>
+          <ul class="steps">
+            <li>Task Manager (or Activity Monitor on Mac) → sort by CPU, RAM, Disk — identify the hog</li>
+            <li>Check Startup tab — what's launching at login?</li>
+            <li>Check Windows Event Viewer / scheduled tasks — what runs at ~8:45-9:00?</li>
+            <li>Check AD/GPO — is there a district-wide AV scan, update push, or login script running then?</li>
+            <li>Check Jamf or SCCM — any policy enforcement running at login?</li>
+          </ul>
+          <div class="hl hl-green"><strong>Resolution options:</strong> Reschedule the process to off-hours · Stagger start times across machines · Upgrade RAM if truly insufficient · Add exclusion to AV scan for critical work folders</div>
+        </div>
+      </div>
+
+      <div class="card anchor" id="t4">
+        <div class="card-header">
+          <span class="q-num">T4</span>
+          <h3>What is the difference between a Permission and a Right in Active Directory?
+            <span class="q-text">AD conceptual question</span>
+          </h3>
+        </div>
+        <div class="answer-body">
+          <div class="hl hl-blue">
+            <strong>Permissions</strong> → attached to <em>objects</em> (shared folder, printer, mailbox). Control what a user can do TO the object (Read, Write, Full Control).<br><br>
+            <strong>Rights</strong> → attached to <em>accounts or groups</em> (via GPO). Control what the user can do ON the system (log in locally, shut down, back up files, manage audit logs).
+          </div>
+          <p><strong>In practice:</strong></p>
+          <ul class="steps">
+            <li>Counselor can't open a Banner report folder → check <strong>Permissions</strong> on that network share</li>
+            <li>Staff member can't log into a workstation at all → check <strong>Rights</strong> (local logon right) + AD account status (disabled? locked?)</li>
+            <li>User can log in but can't print → check <strong>Permissions</strong> on the print queue object</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card anchor" id="t5">
+        <div class="card-header">
+          <span class="q-num">T5</span>
+          <h3>User asks you to fix specialized chemistry lab software you've never seen.
+            <span class="q-text">Resourcefulness / "I don't know"</span>
+          </h3>
+        </div>
+        <div class="answer-body">
+          <div class="hl hl-amber"><strong>Never fake it. Confident framework beats bluffed knowledge every time.</strong></div>
+          <ul class="steps">
+            <li>Check internal KB first — has ETS seen this before?</li>
+            <li>Ask the user: "What does a successful workflow look like? What changed right before it stopped?" They often know the what — I find the technical why.</li>
+            <li>Check vendor documentation / community forums for that specific version</li>
+            <li>Check for recent OS update or driver change that could have broken compatibility</li>
+            <li>Reach out to Senior Specialist — "Have we seen this before? Is there an unofficial fix?"</li>
+          </ul>
+          <div class="hl hl-blue"><strong>Key phrase:</strong> "I may not know this software yet, but I know how to diagnose software problems systematically. Let me start with what I do know and work toward what I don't."</div>
+        </div>
+      </div>
+
+      <div class="section-title">5 Kevin Metcalf / FHDA-Specific Technical Questions</div>
+
+      <div class="card anchor" id="t6">
+        <div class="card-header">
+          <span class="q-num green">T6</span>
+          <h3>New MacBook — no district software showing, no network drive mapped.
+            <span class="q-text">Jamf MDM enrollment failure — MOST LIKELY Q in the interview</span>
+          </h3>
+        </div>
+        <div class="answer-body">
+          <div class="hl hl-green"><strong>First thought: Jamf enrollment didn't complete.</strong></div>
+          <ul class="steps">
+            <li>Check for <strong>Self Service app</strong> in Applications — if not there, enrollment failed</li>
+            <li>Check System Settings → Privacy & Security → <strong>Profiles</strong> — if no district MDM profiles listed, device isn't managed</li>
+            <li>Go to Jamf Pro console → look up by serial number → check enrollment status and last check-in</li>
+            <li>If stalled: confirm device is assigned to correct site in <strong>Apple School Manager (ADE)</strong></li>
+            <li>Re-enroll: re-run Setup Assistant, or use Apple Configurator to push through ADE</li>
+            <li>Network drive: should come via login script/config profile on enrollment — if it doesn't after re-enroll, check AD binding and user's home drive path</li>
+          </ul>
+          <div class="hl hl-blue"><strong>Set expectations upfront:</strong> "This will take about 20–30 minutes to fully configure once enrollment completes — I'll check back with you when it's done."</div>
+          <div class="tags"><span class="tag green">Jamf Pro</span><span class="tag green">ADE</span><span class="tag green">Apple School Manager</span><span class="tag green">MDM Profiles</span></div>
+        </div>
+      </div>
+
+      <div class="card anchor" id="t7">
+        <div class="card-header">
+          <span class="q-num red">T7</span>
+          <h3>Student worker accidentally left another student's Canvas grades visible on a shared lab computer.
+            <span class="q-text">FERPA incident response</span>
+          </h3>
+        </div>
+        <div class="answer-body">
+          <div class="hl hl-red"><strong>This is a FERPA incident. Treat it that way — not as a casual tech issue.</strong></div>
+          <ul class="steps">
+            <li><strong>Contain immediately:</strong> Close the browser session / lock the station — stop the exposure first</li>
+            <li><strong>Document facts:</strong> Which machine, what time, which student worker, what was visible, whether anyone else saw it</li>
+            <li><strong>Escalate — don't handle it yourself:</strong> Supervisor + Privacy Officer / Dean of Students. FERPA reporting is a District compliance call, not a desktop technician call.</li>
+            <li><strong>Preventive fix:</strong> Configure lab machine auto-lock on idle + review session timeout policy in Jamf or GPO</li>
+          </ul>
+          <div class="hl hl-purple"><strong>Principle — Privacy by Design:</strong> FERPA compliance shapes how I configure systems. Auto-lock, session timeouts, clear-screen policies, and logout training aren't just good practices — they're compliance requirements. I bring that lens to every shared-use environment I touch.</div>
+        </div>
+      </div>
+
+      <div class="card anchor" id="t8">
+        <div class="card-header">
+          <span class="q-num">T8</span>
+          <h3>Internet "seems slow" in classroom 4210 — three other rooms on the same floor too.
+            <span class="q-text">Network-layer escalation / know your lane</span>
+          </h3>
+        </div>
+        <div class="answer-body">
+          <div class="hl hl-blue"><strong>Multiple rooms, same floor = infrastructure issue, not a device problem.</strong></div>
+          <ul class="steps">
+            <li>Check Freshservice — any other tickets from that floor/building this morning?</li>
+            <li>Speed test from affected machine + comparison machine on a different floor</li>
+            <li>Floor-specific + slow on both wired and wireless → floor switch or upstream VLAN issue</li>
+            <li><strong>Escalation trigger:</strong> Multi-user, floor-specific, not device-level → network team with: affected floor, user count, speed test results, start time, wired vs. wireless</li>
+            <li>Post Freshservice status update so additional tickets are linked and users know it's being worked</li>
+          </ul>
+          <div class="hl hl-amber"><strong>Know your lane:</strong> I can identify which switch or AP serves that floor from network docs, but diagnosis and remediation of switch/AP problems belongs to the network team. I hand off with data, not just a complaint: "Floor 4 seeing 2Mbps down, Floor 3 is fine, started at 9 AM, both wired and wireless affected."</div>
+        </div>
+      </div>
+
+      <div class="card anchor" id="t9">
+        <div class="card-header">
+          <span class="q-num">T9</span>
+          <h3>Storage room with 15 old laptops — some 6 years old, some 8. What do you do?
+            <span class="q-text">Asset lifecycle / fiscal responsibility / security</span>
+          </h3>
+        </div>
+        <div class="answer-body">
+          <ul class="steps">
+            <li><strong>Inventory first:</strong> Serial number, model, specs, condition — age alone isn't the deciding factor</li>
+            <li><strong>Evaluation criteria:</strong> Can it run current supported OS? Run the district's software stack? Enroll in Jamf? Is the battery serviceable?</li>
+            <li><strong>Pass:</strong> Flag for repurposing — student loaner pool, lab spares, low-performance use cases</li>
+            <li><strong>Fail:</strong> District decommissioning process — data sanitization per <strong>NIST 800-88</strong> before any disposal</li>
+            <li><strong>Document everything:</strong> Machines evaluated, decisions, rationale — serves asset tracking and audit trail</li>
+            <li><strong>No unilateral action:</strong> Retirement/disposal decisions need supervisor sign-off — hardware decisions have budget implications above my authorization level</li>
+          </ul>
+          <div class="tags"><span class="tag">NIST 800-88</span><span class="tag">Asset lifecycle</span><span class="tag">Jamf enrollment check</span><span class="tag">TPM 2.0 / Win11 compat</span></div>
+        </div>
+      </div>
+
+      <div class="card anchor" id="t10">
+        <div class="card-header">
+          <span class="q-num purple">T10</span>
+          <h3>Semester student worker account creation is done manually. How would you automate it?
+            <span class="q-text">PowerShell scripting / safe automation</span>
+          </h3>
+        </div>
+        <div class="answer-body">
+          <div class="hl hl-purple"><strong>Three phases: Document → Test → Log</strong></div>
+          <ul class="steps">
+            <li><strong>Document the manual process fully first</strong> — every step, field, group membership, naming convention. Automating a poorly understood process just makes errors faster. Confirm input source (CSV from HR, Banner report?)</li>
+            <li><strong>Build and test in non-production</strong> — test OU with dummy accounts. Validate naming conventions, group memberships, home directory paths. Have someone else verify output before touching production.</li>
+            <li><strong>Build in logging from the start</strong> — timestamped log of every account created, every group assignment, every error. Audit trail and debugging starting point.</li>
+          </ul>
+          <div class="hl hl-blue"><strong>Tooling:</strong> PowerShell + Active Directory module. Import-CSV for Banner/HR input. Run with <code style="background:#eff6ff;padding:1px 4px;border-radius:3px">-WhatIf</code> parameter first — shows what the script would do without actually doing it. Store in a shared repo so it's not a black box only I can run.</div>
+        </div>
+      </div>
+
+    </div><!-- end panel-tech -->
+
+    <!-- ======================== TAB: CHEAT SHEET ======================== -->
+    <div class="panel" id="panel-cheat">
+
+      <div class="section-title">FHDA District Systems — Quick Triage Reference</div>
+
+      <div class="two-col">
+        <div class="card">
+          <div class="card-header"><span class="q-num">SSO</span><h3>MyPortal / Single Sign-On<span class="q-text">Okta or SAML integration</span></h3></div>
+          <ul class="steps">
+            <li><strong>Incognito mode first</strong> — 90% of SSO loops are stale cookies</li>
+            <li><strong>Clock skew</strong> — device time off by &gt;5 min = SAML token fails silently</li>
+            <li><strong>AD lockoutTime</strong> — check if account is locked in Active Directory</li>
+            <li>Check Okta/SAML logs for 401 or 500 errors if systemic</li>
+          </ul>
+          <div class="tags"><span class="tag accent">SAML</span><span class="tag accent">Okta</span><span class="tag accent">Browser cache</span></div>
+        </div>
+
+        <div class="card">
+          <div class="card-header"><span class="q-num green">Canvas</span><h3>Canvas LMS<span class="q-text">SaaS · syncs with Banner via API</span></h3></div>
+          <ul class="steps">
+            <li><strong>"Not in Canvas"</strong> → Banner sync latency is 4–6 hr batches. Registered 10 min ago = just wait.</li>
+            <li>Verify course is <strong>Published</strong> by the instructor</li>
+            <li>Check for <strong>cross-listed parent course ID</strong> — student may be looking at wrong section</li>
+            <li>Multiple failures → check SAML logs, Banner nightly sync job ran?</li>
+          </ul>
+          <div class="tags"><span class="tag green">status.instructure.com</span><span class="tag green">Banner API sync</span></div>
+        </div>
+
+        <div class="card">
+          <div class="card-header"><span class="q-num amber">Banner</span><h3>Banner ERP<span class="q-text">Oracle-based SIS · the Brain</span></h3></div>
+          <ul class="steps">
+            <li><strong>Crashing / slow</strong> → Chrome or Firefox (not Safari). Check Java compatibility for Admin Pages.</li>
+            <li><strong>Can login but can't see form</strong> → Security class / Oracle permissions issue, not hardware</li>
+            <li><strong>Remote staff</strong> → Are they on <strong>GlobalProtect VPN</strong>? Banner is not public-facing for staff.</li>
+            <li>Form SPAIDEN, RRAAREQ, etc. → permissions-based, not user error</li>
+          </ul>
+          <div class="tags"><span class="tag">Oracle ERP</span><span class="tag">Security Classes</span><span class="tag">VPN required</span></div>
+        </div>
+
+        <div class="card">
+          <div class="card-header"><span class="q-num">VDI</span><h3>Virtual Desktop Infrastructure<span class="q-text">VMware Horizon or Azure Virtual Desktop</span></h3></div>
+          <ul class="steps">
+            <li><strong>Lag</strong> → Switch protocol from PCoIP to <strong>Blast</strong> (better for home internet)</li>
+            <li><strong>Files missing</strong> → User profile didn't mount from network drive → restart re-triggers mount</li>
+            <li><strong>Still laggy after protocol switch</strong> → speed test. Ping &gt;100ms = their ISP, not the server.</li>
+            <li>Check that user is connecting to correct pool/farm</li>
+          </ul>
+          <div class="tags"><span class="tag">Blast protocol</span><span class="tag">Profile mount</span><span class="tag">Ping test</span></div>
+        </div>
+
+        <div class="card">
+          <div class="card-header"><span class="q-num red">MFA</span><h3>Multi-Factor Authentication<span class="q-text">Duo Security or Okta Verify</span></h3></div>
+          <ul class="steps">
+            <li><strong>New phone / locked out</strong> → Verify identity per FERPA → issue <strong>temporary bypass code</strong></li>
+            <li>Send new activation link to personal email via admin console</li>
+            <li><strong>Push not arriving</strong> → switch to 6-digit code generation (bypasses cellular delays)</li>
+            <li>Confirm phone number/device is correct in the MFA admin portal</li>
+          </ul>
+          <div class="tags"><span class="tag red">FERPA verify ID first</span><span class="tag">Bypass code</span><span class="tag">Okta admin console</span></div>
+        </div>
+
+        <div class="card">
+          <div class="card-header"><span class="q-num green">Jamf</span><h3>Jamf Pro / Mac MDM<span class="q-text">FHDA's endpoint management platform</span></h3></div>
+          <ul class="steps">
+            <li><strong>Software not deploying</strong> → Check Self Service app in Applications</li>
+            <li><strong>Profiles missing</strong> → System Settings → Privacy & Security → Profiles</li>
+            <li><strong>Enrollment stalled</strong> → Check Jamf Pro by serial number → verify in Apple School Manager (ADE)</li>
+            <li><strong>Re-enroll</strong> → Re-run Setup Assistant or use Apple Configurator</li>
+            <li>Terminal re-enroll: <code style="background:#f0fdf4;padding:1px 4px;border-radius:3px">sudo jamf enroll</code></li>
+          </ul>
+          <div class="tags"><span class="tag green">ADE</span><span class="tag green">Self Service</span><span class="tag green">Apple School Manager</span></div>
+        </div>
+      </div>
+
+      <div class="section-title" style="margin-top:24px">Network Triage — OSI Bottom-Up</div>
+      <div class="card">
+        <table>
+          <thead><tr><th>Layer</th><th>Check</th><th>Command / Tool</th><th>If this fails</th></tr></thead>
+          <tbody>
+            <tr><td>L1 Physical</td><td>Cable seated? Port lit? Wi-Fi signal?</td><td>Visual inspection</td><td>Reseat cable, try different port</td></tr>
+            <tr><td>L2 Data Link</td><td>Does device have an IP? APIPA (169.x.x.x)?</td><td>ipconfig /all · ifconfig</td><td>Check DHCP server, NIC driver</td></tr>
+            <tr><td>L3 Network</td><td>Can it ping the gateway?</td><td>ping [gateway IP]</td><td>VLAN issue → network team</td></tr>
+            <tr><td>L3 Internet</td><td>Can it ping 8.8.8.8?</td><td>ping 8.8.8.8</td><td>Routing issue → network team</td></tr>
+            <tr><td>L7 DNS</td><td>Can it resolve a hostname?</td><td>nslookup google.com</td><td>Flush DNS, point to 8.8.8.8 to test</td></tr>
+            <tr><td>L7 App</td><td>Is it one app or all traffic?</td><td>Browser console (F12) for 4xx/5xx</td><td>App issue, not network</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="section-title">Printer Quick Fixes</div>
+      <div class="card">
+        <table>
+          <thead><tr><th>Problem</th><th>Fix</th></tr></thead>
+          <tbody>
+            <tr><td>Spooler stuck</td><td><code>net stop spooler</code> → clear C:\Windows\System32\spool\PRINTERS → <code>net start spooler</code></td></tr>
+            <tr><td>Driver mismatch after OS update</td><td>Remove and reinstall with correct driver version for new OS</td></tr>
+            <tr><td>Network printer lost after IP change</td><td>Update port IP, or configure static IP at the device</td></tr>
+            <tr><td>Scan-to-email broken</td><td>Check SMTP relay settings — often breaks after email server migration</td></tr>
+            <tr><td>Copier auth (card reader/PIN)</td><td>Usually AD or middleware issue, not the printer itself</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div><!-- end panel-cheat -->
+
+    <!-- ======================== TAB: 3 STORIES ======================== -->
+    <div class="panel" id="panel-stories">
+      <div class="section-title">Your 3 Anchor Stories — Deploy for Any Question</div>
+
+      <div class="card" style="border-left: 4px solid #dc2626">
+        <div class="card-header"><span class="q-num red">🔥</span><h3>The Firefighter — Triage & Instructional Continuity</h3></div>
+        <div class="answer-body">
+          <div class="hl hl-red"><strong>Use for:</strong> Concurrent priorities · Fast-paced environment · Triage questions · "Tell me about a stressful situation"</div>
+          <p><strong>Setup:</strong> 9:15 AM Monday. 15 tickets. Dark classroom. Locked-out Dean. Student worker on a password reset.</p>
+          <ul class="steps">
+            <li><strong>Classroom first</strong> — 30 students' learning time. Highest impact. "Calm is contagious."</li>
+            <li><strong>Dean second</strong> — high urgency, individually scoped. Resolve remotely while en route or post-classroom.</li>
+            <li><strong>Delegate the password reset</strong> — "Use KB article X, I'll debrief with you in 10 minutes." Just-in-time training moment.</li>
+          </ul>
+          <div class="hl hl-amber"><strong>The principle:</strong> Impact × Urgency. Learning time is the most expensive resource on a community college campus.</div>
+        </div>
+      </div>
+
+      <div class="card" style="border-left: 4px solid #1d4ed8">
+        <div class="card-header"><span class="q-num">⚙️</span><h3>The Engineer — Systemic Thinking & Automation</h3></div>
+        <div class="answer-body">
+          <div class="hl hl-blue"><strong>Use for:</strong> Systemic issues · Data/analytics · Workflow improvement · "Tell me about a process you improved"</div>
+          <p><strong>Story A — Thursday Banner Pattern (Skyline):</strong> 3-week ticket pattern → pulled history → Thursday PM cluster → Banner report job misconfigured to run during business hours → escalated with timestamps → admin fixed in 1 hour → tickets stopped.</p>
+          <p><strong>Story B — Faraday Future (if asked about automation/scripting):</strong> Python + pandas on 2,000+ tickets → found 15% came from single config error → worked with engineering on global patch → category of ticket eliminated.</p>
+          <div class="hl hl-blue"><strong>The principle:</strong> A single ticket is a problem. A cluster of tickets is a signal. My job is to notice when something is trying to tell me something bigger.</div>
+        </div>
+      </div>
+
+      <div class="card" style="border-left: 4px solid #7c3aed">
+        <div class="card-header"><span class="q-num purple">🎓</span><h3>The Educator — Mentorship & Learning Science</h3></div>
+        <div class="answer-body">
+          <div class="hl hl-purple"><strong>Use for:</strong> Training · Mentoring student workers · DEI · "How do you develop your team?"</div>
+          <p><strong>The framework (Applied Andragogy / Scaffolding):</strong></p>
+          <ul class="steps">
+            <li><strong>Don't take the mouse</strong> — if you do it for them, they haven't learned</li>
+            <li><strong>No acronyms until they understand the concept</strong> — if they can't explain DHCP without saying "DHCP," they don't understand it yet</li>
+            <li><strong>Socratic diagnosis:</strong> "What did you see right before it stopped working?" — makes the user a participant in the fix</li>
+            <li><strong>Narrate while you work</strong> — "I'm clearing your cache because..." builds mental models, not muscle memory</li>
+          </ul>
+          <div class="hl hl-purple"><strong>The principle:</strong> I want to turn student workers into IT consultants, not ticket-closers. The help desk is a classroom if you approach it that way.</div>
+        </div>
+      </div>
+
+    </div><!-- end panel-stories -->
+
+    <!-- ======================== TAB: VOCAB ======================== -->
+    <div class="panel" id="panel-vocab">
+      <div class="section-title">Key Technical Vocabulary — Drop Naturally in Answers</div>
+      <div class="card">
+        <table>
+          <thead><tr><th>Term</th><th>What it is</th><th>When to use it</th></tr></thead>
+          <tbody>
+            <tr><td>GPO</td><td>Group Policy Object — AD mechanism to enforce settings across machines (screensavers, drive mapping, software push)</td><td>Slow startup, security settings, login scripts</td></tr>
+            <tr><td>SAML</td><td>Protocol that makes SSO work. When it breaks → login loops. Check Okta/SAML logs for 401/500 errors.</td><td>Any SSO / Canvas login issue</td></tr>
+            <tr><td>ADE / DEP</td><td>Apple Device Enrollment — Macs check Apple servers on first boot to see if they belong to FHDA and auto-enroll in Jamf</td><td>New Mac setup, Jamf enrollment questions</td></tr>
+            <tr><td>MDM</td><td>Mobile Device Management — Jamf is FHDA's MDM. Manages config profiles, software deployment, compliance enforcement.</td><td>Any Mac/iOS endpoint question</td></tr>
+            <tr><td>ITSM</td><td>IT Service Management — the framework (Freshservice, ServiceNow) governing how tickets flow, escalate, and close</td><td>Talking about workflow, Freshservice, automation</td></tr>
+            <tr><td>SLA</td><td>Service Level Agreement — the contractual response/resolution time by priority tier. Missing SLAs erodes department trust.</td><td>Triage, queue management, priority questions</td></tr>
+            <tr><td>APIPA</td><td>169.254.x.x — auto-assigned IP when DHCP fails. Means no real IP assigned = no network access.</td><td>Network connectivity troubleshooting</td></tr>
+            <tr><td>NIST 800-88</td><td>Federal standard for media sanitization / data destruction before hardware disposal</td><td>Asset lifecycle, decommissioning laptops</td></tr>
+            <tr><td>Least Privilege</td><td>Security principle: give users only the access they need for their job, nothing more</td><td>AD permissions, FERPA, lab security</td></tr>
+            <tr><td>FERPA</td><td>Family Educational Rights and Privacy Act — governs student data. Always verify identity before giving access or discussing records.</td><td>Any student data situation, MFA bypass codes</td></tr>
+            <tr><td>OSI Model</td><td>7-layer model for network troubleshooting. For help desk: L1 (physical) → L2 (data link) → L3 (network/IP) → L7 (application)</td><td>Any network troubleshooting question</td></tr>
+            <tr><td>-WhatIf</td><td>PowerShell parameter — shows what a script would do without actually executing it. Signals you test safely.</td><td>Any scripting/automation question</td></tr>
+            <tr><td>Blast / PCoIP</td><td>VMware Horizon display protocols. Blast is better for home internet; PCoIP is better on LAN. Switch if VDI is laggy.</td><td>VDI performance issues</td></tr>
+            <tr><td>Instructional Continuity</td><td>FHDA/CCC priority framework — keeping classroom instruction uninterrupted is the highest-impact use of IT resources</td><td>Triage, priority questions, "why did you go to the classroom first"</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div><!-- end panel-vocab -->
+
+    <!-- ======================== TAB: CLOSERS ======================== -->
+    <div class="panel" id="panel-closer">
+      <div class="section-title">Closing Statements & Golden Thread</div>
+
+      <div class="card" style="border-top: 3px solid #1d4ed8">
+        <div class="card-header"><span class="q-num">★</span><h3>The Golden Closer — "Why you?" or "Anything else you'd like us to know?"</h3></div>
+        <div class="answer-body">
+          <div class="hl hl-blue" style="font-size:14px;line-height:1.7">
+            "I'm not just applying to fix computers. I'm applying because I've been a student at Foothill who needed the tech to work, and I've been on the other side of the help desk trying to make it work for someone else. My CS degree gives me the technical depth. My time in classrooms gives me the patience and the communication skills. And my time in this district gives me the context to understand what's actually at stake when a student can't log in. I want to come back and hold that door open."
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><span class="q-num green">DEI</span><h3>Equity / DEI Question — "How do you ensure equitable support for all students?"</h3></div>
+        <div class="answer-body">
+          <div class="hl hl-green"><strong>Angle: You've been on both sides.</strong></div>
+          <p>Equity in IT means recognizing that not everyone has the same technical capital when they arrive on campus. I know this firsthand — I've been a first-generation student at Foothill who needed these systems to work. When a login fails or financial aid is locked, it's not just a tech inconvenience — it's a barrier between that student and their future.</p>
+          <p>At Skyline I translated Banner and financial aid system errors into plain-language guides. I advocated for low-bandwidth solutions for students without reliable home internet. I made the opaque transparent.</p>
+          <div class="hl hl-blue"><strong>Key phrase:</strong> "DEI in tech is about removing friction between a student's ambition and the tools they need to reach it. I bring that lens to every user interaction and every system I configure."</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><span class="q-num amber">⏰</span><h3>Zoom-Specific Reminders</h3></div>
+        <div class="answer-body">
+          <div class="two-col">
+            <div>
+              <div class="hl hl-amber"><strong>Camera:</strong> Eye level — not looking up from a laptop. Looking up reads as uncertain.</div>
+              <div class="hl hl-blue"><strong>Pacing:</strong> Speak slightly slower than feels natural. Pauses read well on video.</div>
+            </div>
+            <div>
+              <div class="hl hl-green"><strong>If you go blank:</strong> "Let me make sure I give you a complete answer on that" — buys 3 seconds without sounding lost.</div>
+              <div class="hl hl-purple"><strong>Close every technical answer:</strong> Tie back to the student. "Once the fix is in, I follow up to confirm they can actually do what they needed to do — not just that the system is technically working."</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><span class="q-num">📧</span><h3>Same-Day Thank You Email — Send by 5 PM today</h3></div>
+        <div class="answer-body">
+          <div class="hl hl-blue">
+            <strong>Subject:</strong> Thank You — Client Systems Specialist Interview, Henry Fan<br><br>
+            Dear [Name / Committee],<br><br>
+            Thank you for the time today. I appreciated the conversation about [specific topic from interview — fill in after]. It reinforced what I already knew: ETS is the kind of team where technical depth and genuine care for students coexist, and that's exactly where I want to be.<br><br>
+            I'm excited about the opportunity and confident I can contribute from day one. Please don't hesitate to reach out if you have any follow-up questions.<br><br>
+            Best regards,<br>
+            Henry Fan<br>
+            fansofhenry@gmail.com · 650 823 5997
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end panel-closer -->
+
+  </div><!-- end content -->
+</div><!-- end main -->
+
+<script>
+// Tab switching
+function showTab(id) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('panel-' + id).classList.add('active');
+  buildSidebar(id);
+  document.getElementById('content').scrollTop = 0;
+}
+
+// Sidebar
+const sidebarData = {
+  q10: [
+    { label: 'Behavioral', items: [
+      {id:'q1', text:'Q1 · Tell me about yourself'},
+      {id:'q2', text:'Q2 · Concurrent priorities'},
+      {id:'q3', text:'Q3 · Difficult tech problem ★'},
+      {id:'q4', text:'Q4 · Frustrated user'},
+      {id:'q5', text:'Q5 · Active Directory'},
+    ]},
+    { label: 'Situational', items: [
+      {id:'q6', text:'Q6 · Training users'},
+      {id:'q7', text:'Q7 · Documentation'},
+      {id:'q8', text:'Q8 · Staying current'},
+      {id:'q9', text:'Q9 · Systemic issue ★'},
+      {id:'q10', text:'Q10 · Your questions'},
+    ]},
+  ],
+  tech: [
+    { label: 'Original 5', items: [
+      {id:'t1', text:'T1 · Website / DNS'},
+      {id:'t2', text:'T2 · Classroom projector'},
+      {id:'t3', text:'T3 · Slow computer'},
+      {id:'t4', text:'T4 · Permissions vs Rights'},
+      {id:'t5', text:'T5 · Unknown software'},
+    ]},
+    { label: 'Metcalf / FHDA', items: [
+      {id:'t6', text:'T6 · Jamf enrollment ★'},
+      {id:'t7', text:'T7 · FERPA incident'},
+      {id:'t8', text:'T8 · Network slowness'},
+      {id:'t9', text:'T9 · Old laptops'},
+      {id:'t10', text:'T10 · AD automation'},
+    ]},
+  ],
+  cheat: [
+    { label: 'Systems', items: [
+      {id:'', text:'SSO / MyPortal'},
+      {id:'', text:'Canvas LMS'},
+      {id:'', text:'Banner ERP'},
+      {id:'', text:'VDI'},
+      {id:'', text:'MFA / Duo'},
+      {id:'', text:'Jamf Pro'},
+    ]},
+    { label: 'References', items: [
+      {id:'', text:'Network OSI Triage'},
+      {id:'', text:'Printer Quick Fixes'},
+    ]},
+  ],
+  stories: [],
+  vocab: [],
+  closer: [],
+};
+
+function buildSidebar(tabId) {
+  const sb = document.getElementById('sidebar');
+  const data = sidebarData[tabId] || [];
+  if (!data.length) { sb.innerHTML = ''; return; }
+  let html = '';
+  data.forEach(section => {
+    html += `<div class="sidebar-section">${section.label}</div>`;
+    section.items.forEach(item => {
+      html += `<div class="sidebar-item" onclick="scrollTo('${item.id}')">${item.text}</div>`;
+    });
+  });
+  sb.innerHTML = html;
+}
+
+function scrollTo(id) {
+  if (!id) return;
+  const el = document.getElementById(id);
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
+    event.target.classList.add('active');
+  }
+}
+
+// Search
+function doSearch(query) {
+  const q = query.trim().toLowerCase();
+  const content = document.getElementById('content');
+
+  // Remove old highlights
+  content.querySelectorAll('.search-match').forEach(el => {
+    el.outerHTML = el.innerHTML;
+  });
+
+  if (!q || q.length < 2) return;
+
+  // Show all panels temporarily for search
+  // Actually just search within current panel
+  const activePanel = content.querySelector('.panel.active');
+  if (!activePanel) return;
+
+  const walker = document.createTreeWalker(activePanel, NodeFilter.SHOW_TEXT);
+  const nodes = [];
+  while (walker.nextNode()) nodes.push(walker.currentNode);
+
+  nodes.forEach(node => {
+    const text = node.textContent;
+    const lower = text.toLowerCase();
+    if (lower.includes(q)) {
+      const idx = lower.indexOf(q);
+      const span = document.createElement('span');
+      span.innerHTML =
+        escHtml(text.substring(0, idx)) +
+        '<span class="search-match">' + escHtml(text.substring(idx, idx + q.length)) + '</span>' +
+        escHtml(text.substring(idx + q.length));
+      node.parentNode.replaceChild(span, node);
+    }
+  });
+
+  // Scroll to first match
+  const first = activePanel.querySelector('.search-match');
+  if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function escHtml(str) {
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// Init
+buildSidebar('q10');
+</script>
+</body>
+</html>
